@@ -1,4 +1,4 @@
-package com.example.uploadface;
+package com.example.client;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.uploadface.UploadFile;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,7 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class UploadFace extends AppCompatActivity implements View.OnClickListener {
     private Button trainBtn, ChooseBnt, detectBtn;
     private EditText NAME;
     private ImageView imgView;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.upload_face);
         trainBtn = (Button) findViewById(R.id.trainBtn);
         detectBtn = (Button) findViewById(R.id.detectBtn);
         ChooseBnt = (Button) findViewById(R.id.chooseBtn);
