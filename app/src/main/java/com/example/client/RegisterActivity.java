@@ -22,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity{
         this.edtName = (EditText) findViewById(R.id.name);
     }
 
-    public void regiter(View v){
+    public void register(View v){
         new Register(new Register.AsyncResponse(){
 
             @Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,4 +21,20 @@
         android:id="@+id/name"
         android:visibility="gone"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:text="Choose Image"
+        android:layout_marginTop="25dp"
+        android:id="@+id/chooseBtn"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chooseBtn"
+        android:text="Train"
+        android:layout_marginTop="15dp"
+        android:id="@+id/trainBtn"/>
+
+</RelativeLayout>

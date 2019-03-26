@@ -58,7 +58,7 @@ public class UploadFile extends AsyncTask<String, Void, String> {
             // set the file input stream and file name as arguments
             entity.addPart("file", new InputStreamBody(fis, inFile.getName()));
             if(id != null)
-                entity.addPart("nome", new StringBody(id));
+                entity.addPart("id", new StringBody(id));
             httppost.setEntity(entity);
 
             // execute the request

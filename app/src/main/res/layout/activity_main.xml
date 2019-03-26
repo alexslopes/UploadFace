@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/train"
-        android:text="Choose Image"
+        android:text="Detectar faces"
         android:layout_marginTop="25dp"
         android:id="@+id/detect"/>
 

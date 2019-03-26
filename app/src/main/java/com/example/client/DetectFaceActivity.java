@@ -3,11 +3,11 @@ package com.example.client;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,29 +23,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class UploadFace extends AppCompatActivity implements View.OnClickListener {
-    private Button trainBtn, ChooseBnt, detectBtn;
-    private EditText NAME;
-    private ImageView imgView;
+public class DetectFaceActivity extends AppCompatActivity implements View.OnClickListener{
+
     private final int IMG_REQUEST = 1;
-    private Bitmap bitmap;
-    public static final String TAG = "Teste";
     public Uri path;
+    private Bitmap bitmap;
+    private ImageView imgView;
+    private Button detectBtn, ChooseBnt;
 
-    public final String TRAIN_SERVICE_URL = "http://192.168.1.19:8080/Facerecognizer/services/upload/1";
-    public final String DETECT_SERVICE_URL = "http://192.168.1.19:8080/Facerecognizer/services/upload/2";
+    public final String DETECT_SERVICE_URL = "http://192.168.1.19:8080/Facerecognizer/services/upload/recognize";
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.upload_face);
-        trainBtn = (Button) findViewById(R.id.trainBtn);
+        setContentView(R.layout.detect_face);
         detectBtn = (Button) findViewById(R.id.detectBtn);
         ChooseBnt = (Button) findViewById(R.id.chooseBtn);
-        NAME = (EditText) findViewById(R.id.name);
         imgView = (ImageView) findViewById(R.id.imageView);
         ChooseBnt.setOnClickListener(this);
-        trainBtn.setOnClickListener(this);
         detectBtn.setOnClickListener(this);
     }
 
@@ -54,14 +48,6 @@ public class UploadFace extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()){
             case R.id.chooseBtn:
                 selectImage();
-                break;
-
-            case R.id.trainBtn:
-                try {
-                    trainImage();
-                } catch (FileNotFoundException e){
-                    Toast.makeText(getBaseContext(), "Imagem não encontrada", Toast.LENGTH_SHORT).show();
-                }
                 break;
 
             case R.id.detectBtn:
@@ -92,28 +78,11 @@ public class UploadFace extends AppCompatActivity implements View.OnClickListene
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
                 imgView.setImageBitmap(bitmap);
                 imgView.setVisibility(View.VISIBLE);
-                NAME.setVisibility(View.VISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-    private void trainImage() throws FileNotFoundException {
-        String id = DocumentsContract.getDocumentId(path);
-        InputStream inputStream = getContentResolver().openInputStream(path);
-        File file = new File(getCacheDir().getAbsolutePath()+"/"+id);
-        writeFile(inputStream, file);
-        String filePath = file.getAbsolutePath();
-            new UploadFile(new UploadFile.AsyncResponse(){
-
-                @Override
-                public void processFinish(String output){
-                    Toast.makeText(getBaseContext(), output, Toast.LENGTH_SHORT).show();
-                }
-            } ).execute(TRAIN_SERVICE_URL, filePath, NAME.getText().toString());
-    }
-
 
 
     private void detectFace() throws FileNotFoundException{
@@ -130,6 +99,7 @@ public class UploadFace extends AppCompatActivity implements View.OnClickListene
             }
         } ).execute(DETECT_SERVICE_URL, filePath);
     }
+
 
     void writeFile(InputStream in, File file) {
         OutputStream out = null;
