@@ -3,19 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite seu nome"
-        android:inputType="text"
-        android:layout_marginTop="20dp"
-        android:id="@+id/name"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Digite seu login"
-        android:layout_below="@+id/name"
         android:inputType="text"
         android:layout_marginTop="20dp"
         android:id="@+id/login"/>
@@ -24,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Digite sua senha"
-        android:layout_below="@+id/login"
         android:inputType="textPassword"
+        android:layout_below="@+id/login"
         android:layout_marginTop="20dp"
         android:id="@+id/password"/>
 
@@ -33,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
-        android:onClick="register"
-        android:text="Cadastrar" />
+        android:onClick="login"
+        android:text="Logar" />
 
 </RelativeLayout>

@@ -42,7 +42,9 @@ public class Register extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
 
         String service = params[0];
-        String name = params[1];
+        String login = params[1];
+        String password = params[2];
+        String name = params[3];
         String responseString = null;
 
 
@@ -50,6 +52,8 @@ public class Register extends AsyncTask<String, Void, String> {
             DefaultHttpClient httpclient = new DefaultHttpClient();
 
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+            nameValuePairs.add(new BasicNameValuePair("login", login));
+            nameValuePairs.add(new BasicNameValuePair("password", password));
             nameValuePairs.add(new BasicNameValuePair("name", name));
 
             // server back-end URL

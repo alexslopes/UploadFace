@@ -22,6 +22,7 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".TrainFaceActivity"/>
         <activity android:name=".DetectFaceActivity"/>
+        <activity android:name=".LoginActivity"/>
     </application>
 
 </manifest>

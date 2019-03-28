@@ -11,6 +11,8 @@ import com.example.server.Register;
 public class RegisterActivity extends AppCompatActivity{
 
     EditText edtName;
+    EditText edtLogin;
+    EditText edtPassword;
 
     public final String REGISTER_SERVICE_URL = "http://192.168.1.19:8080/Facerecognizer/services/upload/register";
 
@@ -20,6 +22,8 @@ public class RegisterActivity extends AppCompatActivity{
         setContentView(R.layout.register);
 
         this.edtName = (EditText) findViewById(R.id.name);
+        this.edtLogin = (EditText) findViewById(R.id.login);
+        this.edtPassword = (EditText) findViewById(R.id.password);
     }
 
     public void register(View v){
@@ -29,6 +33,6 @@ public class RegisterActivity extends AppCompatActivity{
             public void processFinish(String output){
                 Toast.makeText(getBaseContext(), output, Toast.LENGTH_SHORT).show();
             }
-        } ).execute(REGISTER_SERVICE_URL, edtName.getText().toString());
+        } ).execute(REGISTER_SERVICE_URL, edtLogin.getText().toString(), edtPassword.getText().toString(), edtName.getText().toString());
     }
 }

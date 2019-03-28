@@ -25,7 +25,7 @@ import java.io.OutputStream;
 
 public class TrainFaceActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText name;
+    //private EditText name;
     private final int IMG_REQUEST = 1;
     public Uri path;
     private Bitmap bitmap;
@@ -39,7 +39,7 @@ public class TrainFaceActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.train_face);
         trainBtn = (Button) findViewById(R.id.trainBtn);
         ChooseBnt = (Button) findViewById(R.id.chooseBtn);
-        name = findViewById(R.id.name);
+        //name = findViewById(R.id.name);
         imgView = (ImageView) findViewById(R.id.imageView);
         ChooseBnt.setOnClickListener(this);
         trainBtn.setOnClickListener(this);
@@ -80,7 +80,7 @@ public class TrainFaceActivity extends AppCompatActivity implements View.OnClick
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
                 imgView.setImageBitmap(bitmap);
                 imgView.setVisibility(View.VISIBLE);
-                name.setVisibility(View.VISIBLE);
+                //name.setVisibility(View.VISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -99,7 +99,7 @@ public class TrainFaceActivity extends AppCompatActivity implements View.OnClick
             public void processFinish(String output){
                 Toast.makeText(getBaseContext(), output, Toast.LENGTH_SHORT).show();
             }
-        } ).execute(TRAIN_SERVICE_URL, filePath, name.getText().toString());
+        } ).execute(TRAIN_SERVICE_URL, filePath, LoginActivity.LOGIN, LoginActivity.PASSWORD);
     }
 
     void writeFile(InputStream in, File file) {
