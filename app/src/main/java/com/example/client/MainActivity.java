@@ -25,20 +25,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        findViewById(R.id.train).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, TrainFaceActivity.class));
-            }
-        });
-
-        findViewById(R.id.detect).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DetectFaceActivity.class));
-            }
-        });
-
     }
 
 }

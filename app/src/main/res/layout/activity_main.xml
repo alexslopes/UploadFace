@@ -20,22 +20,4 @@
         android:layout_marginTop="25dp"
         android:id="@+id/login"/>
 
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:text="Treinar imagem"
-        android:layout_marginTop="25dp"
-        android:id="@+id/train"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/train"
-        android:text="Detectar faces"
-        android:layout_marginTop="25dp"
-        android:id="@+id/detect"/>
-
-
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.server.Login;
+import com.example.user.Person;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,8 +17,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtLogin;
     EditText edtPassword;
     JSONObject jObject = null;
-    static String PASSWORD;
-    static String LOGIN;
 
     public final String LOGIN_SERVICE_URL = "http://192.168.1.19:8080/Facerecognizer/services/upload/login";
 
@@ -36,12 +36,15 @@ public class LoginActivity extends AppCompatActivity {
             public void processFinish(String output){
 
                 try {
-                    jObject = new JSONObject(output);
+
                     //Toast.makeText(getBaseContext(), jObject.getString("id"), Toast.LENGTH_SHORT).show();
 
-                    if(jObject != null) {
-                        PASSWORD = edtPassword.getText().toString();
-                        LOGIN = edtLogin.getText().toString();
+                    if(output != null) {
+                        jObject = new JSONObject(output);
+                        Person.createPerson(Integer.parseInt(jObject.getString("id")), jObject.getString("nome"), edtLogin.getText().toString(), edtPassword.getText().toString());
+                        startActivity(new Intent(LoginActivity.this, WorkspaceActivity.class));
+                    } else {
+                        Toast.makeText(getBaseContext(), "Usuário não encontrado, tente novamente", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

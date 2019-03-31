@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.uploadface.UploadFile;
+import com.example.user.Person;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,7 +81,6 @@ public class TrainFaceActivity extends AppCompatActivity implements View.OnClick
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
                 imgView.setImageBitmap(bitmap);
                 imgView.setVisibility(View.VISIBLE);
-                //name.setVisibility(View.VISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -99,7 +99,7 @@ public class TrainFaceActivity extends AppCompatActivity implements View.OnClick
             public void processFinish(String output){
                 Toast.makeText(getBaseContext(), output, Toast.LENGTH_SHORT).show();
             }
-        } ).execute(TRAIN_SERVICE_URL, filePath, LoginActivity.LOGIN, LoginActivity.PASSWORD);
+        } ).execute(TRAIN_SERVICE_URL, filePath, Person.getLogin(), Person.getPassword());
     }
 
     void writeFile(InputStream in, File file) {

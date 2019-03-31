@@ -1,5 +1,6 @@
 package com.example.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -31,7 +32,13 @@ public class RegisterActivity extends AppCompatActivity{
 
             @Override
             public void processFinish(String output){
-                Toast.makeText(getBaseContext(), output, Toast.LENGTH_SHORT).show();
+
+                if(output.equals("true")) {
+                    Toast.makeText(getBaseContext(), "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                } else {
+                    Toast.makeText(getBaseContext(), "Não foi possível realizar o cadastro", Toast.LENGTH_SHORT).show();
+                }
             }
         } ).execute(REGISTER_SERVICE_URL, edtLogin.getText().toString(), edtPassword.getText().toString(), edtName.getText().toString());
     }
